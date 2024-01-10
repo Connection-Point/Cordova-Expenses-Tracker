@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="grey">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover"/>
+        <link rel="stylesheet" href="css/output.css" />
+        <title>Trip Particular</title>
+    </head>
+    <body class="bg-white">
+        <header>
+            <nav class="border-gray-200 bg-white">
+                <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+                    <a href="#" class="flex items-center" id="nav-back" onclick="">
+                        <span id="nav-title" class="self-center whitespace-nowrap text-2xl font-semibold">Trip Particular</span>
+                    </a>
+
+                    <div class="block w-auto" id="navbar-dropdown">
+                        <ul class="rounded-lgflex-row mt-0 flex space-x-8 border-0 border-gray-100 bg-white p-0 font-medium">
+                            <li>
+                                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex w-full items-center justify-between rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100">
+                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"></path>
+                                    </svg>
+                                </button>
+                                <!-- Dropdown -->
+                                <div id="dropdownNavbar" class="z-10 hidden w-44 divide-y divide-gray-100 rounded-lg bg-white font-normal shadow">
+                                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownLargeButton">
+                                        <!-- Edit Trip -->
+                                        <li>
+                                            <a src="#" id="btn-edit-trip" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                                <span>Edit Trip</span>
+                                            </a>
+                                        </li>
+                                        <!-- Add Expenses -->
+                                        <li>
+                                            <a src="#" id="btn-add-expense" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                                <span>Add Expenses</span>
+                                            </a>
+                                        </li>
+                                        <!-- Delete Trip -->
+                                        <li>
+                                            <a src="#" id="btn-confirm-delete-trip" class="flex items-center px-4 py-2 hover:bg-gray-100">
+                                                <span>Delete This Trip</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Option Tab -->
+        <div class="mb-4 border-b border-gray-200">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                <li class="mr-2" role="display-type">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="trip-tab" data-tabs-target="#trip" type="button" role="tab" aria-controls="trip" aria-selected="false">Trip</button>
+                </li>
+
+                <li class="mr-2" role="display-type">
+                    <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="expense-tab" data-tabs-target="#expense" type="button" role="tab" aria-controls="expense" aria-selected="false">Expenses
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div id="myTabContent">
+            <div class="hidden" id="trip" role="tabpanel" aria-labelledby="trip-tab">
+                <!-- Trip -->
+                <div class="mx-4 my-2 flex flex-col items-center justify-center">
+                    <div id="trip-particular" class="m-4 w-full rounded-lg border border-gray-200 bg-white p-4 shadow"></div>
+                </div>
+            </div>
+            <div class="hidden" id="expense" role="tabpanel" aria-labelledby="dashboard-tab">
+                <div id="expenses-list" class="mx-4 my-2 flex flex-col items-center justify-center"></div>
+            </div>
+        </div>
+        <!-- Delete Expense Modal -->
+        <button id="btn-delete-expense-modal" data-modal-target="popup-modal-delete-expense" data-modal-toggle="popup-modal-delete-expense" class="hidden" type="button">Toggle modal</button>
+        <div id="popup-modal-delete-expense" tabindex="-1" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="relative max-h-full w-full max-w-md">
+                <div class="relative rounded-lg bg-white shadow">
+                    <button type="button" class="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900" data-modal-hide="popup-modal-delete-expense">
+                        <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6 text-center">
+                        <svg aria-hidden="true" class="mx-auto mb-4 h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500">|| Please Select An Option to Proceed ||</h3>
+                        <button id="btn-delete-expense" data-modal-hide="popup-modal-delete-expense" type="button" class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300">Delete Expenses</button>
+                        <button id="btn-edit-expense" data-modal-hide="popup-modal-delete-expense" type="button" class="mr-2 inline-flex items-center rounded-lg bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300">Edit Expenses</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Trip Modal -->
+        <button id="btn-delete-trip-modal" data-modal-target="popup-modal-delete-trip" data-modal-toggle="popup-modal-delete-trip" class="hidden" type="button">Toggle modal</button>
+        <div id="popup-modal-delete-trip" tabindex="-1" class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
+            <div class="relative max-h-full w-full max-w-md">
+                <div class="relative rounded-lg bg-white shadow">
+                    <button type="button" class="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900" data-modal-hide="popup-modal-delete-trip">
+                        <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="p-6 text-center">
+                        <svg aria-hidden="true" class="mx-auto mb-4 h-14 w-14 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500">Confirmation Required to Delete Trip</h3>
+                        <button id="btn-delete-single-trip" data-modal-hide="popup-modal-delete-trip" type="button" class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300">Ok</button>
+                        <button data-modal-hide="popup-modal-delete-trip" type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="cordova.js"></script>
+        <script src="js/flowbite.min.js"></script>
+        <script src="js/zepto.min.js"></script>
+        <script src="js/database.js"></script>
+        <script src="js/index.js"></script>
+        <script>
+            $(document).ready(function () {
+                let tripId = getQueryParam('tripId');
+                if (!isDbReady) {
+                    waitForDatabase(function () {
+                        refreshIndividualTrip(tripId);
+                        refreshTripExpense(tripId);
+                    });
+                } else {
+                    refreshIndividualTrip(tripId);
+                    refreshTripExpense(tripId);
+                }
+
+                function waitForDatabase(callback) {
+                    let intervalId = setInterval(function () {
+                        if (isDbReady) {
+                            clearInterval(intervalId);
+                            callback();
+                        }
+                    }, 100);
+                }
+            });
+        </script>
+    </body>
+</html>
